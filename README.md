@@ -1,18 +1,23 @@
-# My CV Website
+# sergiozanela.github.io
 
-**Student:** Sergio Zanela
+Personal portfolio and CV website for **Sergio Rafael Jardim Zanela** — Junior Software Engineer based in Sydney, NSW.
 
-This project is a static personal CV website developed as part of a practical assessment task and deployed using GitHub Pages.
+## 🌐 Live Site
 
-## Live Website
+[sergiozanela.github.io](https://sergiozanela.github.io)
 
-https://sergiozanela.github.io/MyCV/
+## About
 
-## Technologies Used
+A clean, responsive personal CV site built with HTML and CSS, deployed via GitHub Pages. The site covers my background, tech stack, work experience, and education — designed to give recruiters and hiring managers a quick, clear picture of who I am and what I'm working towards.
 
-- HTML
-- CSS
+## Tech
 
-## Notes
+- HTML5
+- CSS3
+- GitHub Pages
 
-This repository contains the files for my personal CV website, including the main HTML structure and custom CSS styling, prepared for static deployment with GitHub Pages.
+## Connect
+
+- 💼 [LinkedIn](https://www.linkedin.com/in/sergio-r-zanela-897437246/)
+- 📧 sergiozanela18@gmail.com
+- 🐙 [GitHub](https://github.com/SergioZanela)
