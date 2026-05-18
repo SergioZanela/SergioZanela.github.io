@@ -1,197 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sergio Rafael Jardim Zanela | CV</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sergio Rafael Jardim Zanela | Junior Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #181c25;
+      --border: #252a36;
+      --accent: #2e86ab;
+      --accent-light: #4fa8cc;
+      --text: #e8eaf0;
+      --muted: #7a8199;
+      --tag-bg: #1e2435;
+      --tag-text: #4fa8cc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Layout ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-name {
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .hero-name span {
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--accent-light);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.2rem;
+    }
+
+    .hero-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.75rem;
+      border-radius: 3px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .hero-links a:hover {
+      color: var(--accent-light);
+      border-color: var(--accent);
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      object-fit: cover;
+      opacity: 0.92;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 10;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--accent-light); }
+
+    /* ── Sections ── */
+    section {
+      padding: 2.5rem 0 0;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Profile ── */
+    .profile-text {
+      color: var(--muted);
+      max-width: 680px;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* ── Tech Stack ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.75rem;
+      border-radius: 3px;
+    }
+
+    .tag.highlight {
+      background: rgba(46,134,171,0.12);
+      border-color: var(--accent);
+      color: var(--accent-light);
+    }
+
+    /* ── Experience & Education items ── */
+    .items { display: flex; flex-direction: column; gap: 1.8rem; }
+
+    .item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0 1rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .item-role {
+      font-weight: 500;
+      font-size: 0.97rem;
+      color: var(--text);
+    }
+
+    .item-company {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent-light);
+      margin-top: 0.15rem;
+    }
+
+    .item-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .item-note {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: var(--accent);
+      margin-top: 0.2rem;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .item ul {
+      margin-top: 0.7rem;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.75;
+      grid-column: 1 / -1;
+    }
+
+    .item ul li { margin-bottom: 0.25rem; }
+
+    .item-desc {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 0.5rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 580px) {
+      .hero { grid-template-columns: 1fr; }
+      .avatar { display: none; }
+      .item { grid-template-columns: 1fr; }
+      .item-date { text-align: left; }
+      nav { flex-wrap: wrap; gap: 1rem; }
+    }
+  </style>
 </head>
 <body>
-<div class="container">
 
-    <header class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Sergio Rafael Jardim Zanela</h1>
-                <p class="tagline">
-                    Software Engineering Student | Transport & Logistics Professional | Business Owner
-                </p>
-                <p class="intro">
-                    Motivated and adaptable professional with strong experience in transport logistics,
-                    team leadership, customer service, and business operations. Originally from Brazil
-                    and living in Sydney since 2016, I have built a career in logistics management
-                    while continuing to pursue my passion for technology and development. I am currently
-                    studying Software Engineering through the University of New South Wales bootcamp,
-                    where I am developing practical skills in web development, programming, and digital
-                    problem-solving. I am passionate about continuous improvement, organization, and
-                    creating efficient solutions that deliver real value.
-                </p>
-            </div>
+<div class="page">
 
-            <div class="hero-photo">
-                <img src="profile.jpg" alt="Profile photo of Sergio Zanela" />
-            </div>
+  <!-- Hero -->
+  <header class="hero">
+    <div>
+      <h1 class="hero-name">Sergio Rafael<br><span>Jardim Zanela</span></h1>
+      <p class="hero-title">Junior Software Engineer &nbsp;·&nbsp; Sydney, NSW</p>
+      <div class="hero-links">
+        <a href="mailto:raafajz@hotmail.com">raafajz@hotmail.com</a>
+        <a href="tel:+61451579449">+61 0451 579 449</a>
+        <a href="https://www.linkedin.com/in/sergio-r-zanela897437246/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/SergioZanela" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <img src="profile.jpg" alt="Sergio Zanela" class="avatar" />
+  </header>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#profile">Profile</a>
+    <a href="#stack">Stack</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+  </nav>
+
+  <!-- Profile -->
+  <section id="profile">
+    <p class="section-label">Profile</p>
+    <p class="profile-text">
+      Career-changer and recent Software Engineering Bootcamp graduate (UNSW, 2026) with 10+ years of professional experience in logistics, operations, and team leadership. I bring a practical, systems-thinking mindset developed through managing complex real-world operations — now applied to building software. Actively seeking a junior developer role where I can grow fast, contribute meaningfully, and keep learning.
+    </p>
+  </section>
+
+  <!-- Tech Stack -->
+  <section id="stack">
+    <p class="section-label">Tech Stack</p>
+    <div class="tags">
+      <span class="tag highlight">JavaScript</span>
+      <span class="tag highlight">React</span>
+      <span class="tag highlight">Node.js</span>
+      <span class="tag highlight">Express.js</span>
+      <span class="tag highlight">MySQL</span>
+      <span class="tag highlight">MongoDB</span>
+      <span class="tag">HTML5</span>
+      <span class="tag">CSS3</span>
+      <span class="tag">REST APIs</span>
+      <span class="tag">Git</span>
+      <span class="tag">GitHub</span>
+      <span class="tag">VS Code</span>
+      <span class="tag">Agile / Scrum</span>
+      <span class="tag">OOP</span>
+      <span class="tag">MVC</span>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+    <div class="items">
+
+      <div class="item">
+        <div>
+          <p class="item-role">Store Person &amp; Delivery Driver</p>
+          <p class="item-company">John R. Turk — Rockdale, NSW</p>
         </div>
-    </header>
-
-    <section class="card">
-        <h2>Contact</h2>
-        <ul class="contact-list">
-            <li><strong>Phone:</strong> 0451 579 449</li>
-            <li><strong>Email:</strong> <a href="mailto:sergiozanela18@gmail.com">sergiozanela18@gmail.com</a></li>
-            <li><strong>Address:</strong> Sydney, NSW, Australia</li>
-            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sergio-rafael-jardim-zanela-6839a779/" target="_blank">linkedin.com/in/sergio-rafael-jardim-zanela-6839a779</a></li>
-            <li><strong>GitHub:</strong> <a href="https://github.com/SergioZanela" target="_blank">github.com/SergioZanela</a></li>
+        <p class="item-date">2025 – 2026</p>
+        <ul>
+          <li>Applied strong attention to detail managing stock, inventory records, and warehouse organisation.</li>
+          <li>Identified and resolved discrepancies systematically using a methodical, process-driven approach.</li>
+          <li>Delivered goods reliably across the Rockdale region, consistently meeting time-critical targets.</li>
         </ul>
-    </section>
+      </div>
 
-    <section class="card">
-        <h2>Professional Skills</h2>
-        <div class="skills">
-            <span>Teamwork</span>
-            <span>Team Leadership</span>
-            <span>Logistics Management</span>
-            <span>Fleet Coordination</span>
-            <span>Customer Service</span>
-            <span>Decision-Making</span>
-            <span>Continuous Improvement</span>
-            <span>Operations Management</span>
-            <span>Time Management</span>
-            <span>Problem-Solving</span>
-            <span>Communication</span>
-            <span>Organisation</span>
+      <div class="item">
+        <div>
+          <p class="item-role">Director — Courier Services (Owner-Operator)</p>
+          <p class="item-company">Self-Employed — NSW</p>
         </div>
-    </section>
+        <p class="item-date">2023 – 2025</p>
+        <ul>
+          <li>Founded and ran an independent courier business end-to-end: operations, scheduling, invoicing, and client relations.</li>
+          <li>Operated a 2T van across NSW, optimising routes to maintain consistently high on-time delivery rates.</li>
+          <li>Demonstrated self-direction, adaptability, and business ownership in a fully autonomous environment.</li>
+        </ul>
+      </div>
 
-    <section class="card">
-        <h2>Education</h2>
-
-        <div class="item">
-            <h3>Software Engineering</h3>
-            <p class="date">University of New South Wales | Nov. 2025 – Current</p>
+      <div class="item">
+        <div>
+          <p class="item-role">Transport Manager</p>
+          <p class="item-company">Fregolente Group PTY LTD</p>
         </div>
+        <p class="item-date">2019 – 2023</p>
+        <ul>
+          <li>Managed a fleet of 24 vehicles and led a team of 40+ staff across logistics operations.</li>
+          <li>Designed and tracked KPIs to drive continuous performance improvements.</li>
+          <li>Documented and scaled operational processes through structured training programs.</li>
+        </ul>
+      </div>
 
-        <div class="item">
-            <h3>Advanced Diploma of Leadership and Management</h3>
-            <p class="date">Australian Pacific College | Dec. 2018 – Sept. 2019</p>
+      <div class="item">
+        <div>
+          <p class="item-role">Transport Supervisor</p>
+          <p class="item-company">Fregolente Group PTY LTD</p>
         </div>
+        <p class="item-date">2017 – 2019</p>
+        <ul>
+          <li>Supervised driver teams ensuring compliance with safety standards and delivery schedules.</li>
+          <li>Coordinated maintenance scheduling and vehicle compliance across the fleet.</li>
+        </ul>
+      </div>
 
-        <div class="item">
-            <h3>Diploma of Leadership and Management</h3>
-            <p class="date">Australian Pacific College | Dec. 2017 – Sept. 2018</p>
+      <div class="item">
+        <div>
+          <p class="item-role">Earlier Roles (2012 – 2017)</p>
+          <p class="item-company">Fregolente Group PTY LTD &amp; Auto Pecas Mano, Brazil</p>
         </div>
+        <p class="item-date">2012 – 2017</p>
+        <p class="item-desc">Delivery Driver, Customer Service Agent, Store Manager, and Retail Sales. Built strong foundations in customer service, inventory management, and operational problem-solving.</p>
+      </div>
 
-        <div class="item">
-            <h3>Certificate IV in Leadership and Management</h3>
-            <p class="date">Australian Pacific College | Dec. 2016 – Sept. 2017</p>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <p class="section-label">Education</p>
+    <div class="items">
+
+      <div class="item">
+        <div>
+          <p class="item-role">Software Engineering Bootcamp</p>
+          <p class="item-company">University of New South Wales (UNSW), Sydney</p>
+          <p class="item-note">Full-stack: JavaScript · Node.js · React · MySQL · MongoDB · REST APIs · Git</p>
         </div>
+        <p class="item-date">Sept 2025 – Mar 2026</p>
+      </div>
 
-        <div class="item">
-            <h3>Bachelor of Business Administration</h3>
-            <p class="date">PUCRS - Brazil | 2012 – 2015</p>
+      <div class="item">
+        <div>
+          <p class="item-role">Advanced Diploma of Leadership and Management</p>
+          <p class="item-company">Australian Pacific College</p>
         </div>
-    </section>
+        <p class="item-date">Dec 2018 – Sept 2019</p>
+      </div>
 
-    <section class="card">
-        <h2>Work Experience</h2>
-
-        <div class="item">
-            <h3>Director</h3>
-            <p class="company">Zanela Transport PTY LTD</p>
-            <p class="date">2022 – Present</p>
-            <ul>
-                <li>Founded and manage a transport business providing courier and delivery services across Sydney.</li>
-                <li>Coordinate direct parcel deliveries for both business-to-business and business-to-customer clients.</li>
-                <li>Manage customer relationships, service reliability, route planning, scheduling, and daily operations.</li>
-                <li>Oversee vehicle usage, maintenance planning, compliance, and business performance improvement.</li>
-                <li>Focused on building a reliable delivery service with plans for future expansion of fleet and operations.</li>
-            </ul>
+      <div class="item">
+        <div>
+          <p class="item-role">Diploma of Leadership and Management</p>
+          <p class="item-company">Australian Pacific College</p>
         </div>
+        <p class="item-date">Dec 2017 – Sept 2018</p>
+      </div>
 
-        <div class="item">
-            <h3>Store-person and Driver</h3>
-            <p class="company">John R. Turk - Rockdale</p>
-            <p class="date">2025 – Present</p>
-            <ul>
-                <li>Provide efficient customer service by assisting clients with product requests, order collection, and delivery coordination.</li>
-                <li>Maintain accurate stock handling processes, including shelf replenishment, stock checks, and inventory system updates.</li>
-                <li>Support branch operations by monitoring stock levels and providing feedback to management regarding inventory needs.</li>
-                <li>Complete deliveries safely and on time while maintaining professional service standards.</li>
-                <li>Ensure the store and delivery vehicle remain clean, organized, and compliant with workplace expectations.</li>
-            </ul>
+      <div class="item">
+        <div>
+          <p class="item-role">Certificate IV in Leadership and Management</p>
+          <p class="item-company">Australian Pacific College</p>
         </div>
+        <p class="item-date">Dec 2016 – Sept 2017</p>
+      </div>
 
-        <div class="item">
-            <h3>Transport Manager</h3>
-            <p class="company">Fregolente Group PTY LTD</p>
-            <p class="date">2019 – 2024</p>
-            <ul>
-                <li>Managed a fleet of 24 vehicles, including trucks and vans, ensuring maintenance schedules and safety compliance were met.</li>
-                <li>Led a team of more than 40 customer service agents, coordinating rosters and operational support.</li>
-                <li>Maintained and monitored KPIs to improve logistics performance and service efficiency.</li>
-                <li>Conducted performance evaluations and supported training initiatives to improve driver capability and safety awareness.</li>
-            </ul>
+      <div class="item">
+        <div>
+          <p class="item-role">Bachelor of Business Administration</p>
+          <p class="item-company">PUCRS — Brazil</p>
         </div>
+        <p class="item-date">2012 – 2015</p>
+      </div>
 
-        <div class="item">
-            <h3>Transport Supervisor</h3>
-            <p class="company">Fregolente Group PTY LTD</p>
-            <p class="date">2017 – 2019</p>
-            <ul>
-                <li>Supervised drivers to ensure compliance with safety standards, company procedures, and delivery schedules.</li>
-                <li>Managed daily vehicle routines, including maintenance scheduling and roadworthiness checks.</li>
-                <li>Supported transport operations through team coordination and performance monitoring.</li>
-            </ul>
-        </div>
+    </div>
+  </section>
 
-        <div class="item">
-            <h3>Delivery Driver / Customer Service Agent</h3>
-            <p class="company">Fregolente Group PTY LTD</p>
-            <p class="date">2016 – 2017</p>
-            <ul>
-                <li>Operated a 4.5T truck to complete deliveries safely and efficiently.</li>
-                <li>Loaded and unloaded goods carefully to prevent damage during transport.</li>
-                <li>Verified orders and resolved address discrepancies with the dispatch team.</li>
-                <li>Provided professional customer service during deliveries and maintained vehicle presentation.</li>
-            </ul>
-        </div>
+  <footer>
+    <p>Open to junior developer roles &amp; entry-level opportunities · Sydney, NSW or remote · <a href="mailto:raafajz@hotmail.com" style="color:var(--accent-light);text-decoration:none;">raafajz@hotmail.com</a></p>
+  </footer>
 
-        <div class="item">
-            <h3>Store Manager</h3>
-            <p class="company">Auto Pecas Mano - Brazil</p>
-            <p class="date">2014 – 2016</p>
-            <ul>
-                <li>Managed daily store operations including staff supervision, inventory control, and customer service.</li>
-                <li>Reviewed sales reports and market trends to identify growth opportunities and support marketing actions.</li>
-                <li>Conducted performance reviews and supported staff development.</li>
-            </ul>
-        </div>
-
-        <div class="item">
-            <h3>Retail Sales Assistant</h3>
-            <p class="company">Auto Pecas Mano - Brazil</p>
-            <p class="date">2012 – 2014</p>
-            <ul>
-                <li>Provided customer service by assisting clients, answering questions, and recommending suitable products.</li>
-                <li>Processed transactions accurately using point-of-sale systems.</li>
-                <li>Maintained a clean and well-organized sales floor with attractive product presentation.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="card">
-        <h2>Career Objective</h2>
-        <p>
-            My goal is to continue building a professional career that combines my practical
-            experience in leadership, logistics, and business operations with my growing skills in
-            software engineering and technology. I am eager to contribute to teams and projects where
-            I can keep learning, solve problems, and create meaningful results.
-        </p>
-    </section>
-
-    <footer class="footer">
-        <p>© 2026 Sergio Rafael Jardim Zanela</p>
-    </footer>
 </div>
+
 </body>
 </html>
